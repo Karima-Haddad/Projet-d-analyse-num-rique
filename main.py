@@ -1,5 +1,5 @@
-from src.applications.cooling_problem import cooling_temperature
-from src.applications.flow_problem import flow_rate
+from docs.cooling_problem import cooling_temperature
+from docs.flow_problem import flow_rate
 
 
 def main() -> None:
