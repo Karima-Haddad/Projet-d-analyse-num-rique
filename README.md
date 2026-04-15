@@ -22,3 +22,20 @@ python -m pip install -r requirements.txt
 ```bash
 pytest
 ```
+## Interpolation polynomiale
+
+La classe `PolynomialInterpolation` permet :
+- de construire un polynôme interpolateur à partir de points donnés,
+- de l’évaluer avec la méthode de Lagrange,
+- de calculer les coefficients de Newton par différences divisées,
+- de l’évaluer avec la forme de Newton.
+
+### Exemple
+```python
+from src.interpolation.polynomial_interpolation import PolynomialInterpolation
+
+x_points = [0, 1, 2]
+y_points = [1, 3, 2]
+
+interp = PolynomialInterpolation(x_points, y_points)
+print(interp.evaluate(1.5, method="newton"))
