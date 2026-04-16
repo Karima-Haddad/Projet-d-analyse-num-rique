@@ -165,6 +165,7 @@ class FlowProblem:
         Trois méthodes d'intégration sont disponibles :
 
         * ``'adaptive'``  : Simpson adaptatif (précision contrôlée).
+        - ``'rectangle'``   : Rectangle composé
         * ``'simpson'``   : Simpson composé (n doit être pair).
         * ``'trapezoidal'``: Trapèzes composés.
 
@@ -196,13 +197,15 @@ class FlowProblem:
         a = float(self.x_data[0])
         b = float(self.x_data[-1])
 
-        integrand = self.local_flow_rate  # q(x) = v(x) · w(x)
+        integrand = self.local_flow_rate
 
         if method == "adaptive":
             return self._adaptive.adaptive_simpson(integrand, a, b)
 
+        if method == "rectangle":
+            return NewtonCotes.rectangle(integrand, a, b, n=n)
+
         if method == "simpson":
-            # S'assurer que n est pair
             n_even = n if n % 2 == 0 else n + 1
             return NewtonCotes.simpson(integrand, a, b, n=n_even)
 
@@ -211,7 +214,7 @@ class FlowProblem:
 
         raise ValueError(
             f"Méthode d'intégration inconnue : '{method}'. "
-            f"Choisir parmi 'adaptive', 'simpson', 'trapezoidal'."
+            f"Choisir parmi 'adaptive', 'rectangle', 'simpson', 'trapezoidal'."
         )
 
     # ------------------------------------------------------------------

@@ -1,0 +1,32 @@
+RÉSULTATS DU PROJET D'ANALYSE NUMÉRIQUE
+==================================================
+
+1. Étude du phénomène de Runge
+n_5 -> erreur max équidistants = 4.326690e-01, erreur max Tchebychev = 5.558874e-01
+n_10 -> erreur max équidistants = 1.915633e+00, erreur max Tchebychev = 1.091535e-01
+n_15 -> erreur max équidistants = 2.106860e+00, erreur max Tchebychev = 8.309431e-02
+n_20 -> erreur max équidistants = 5.976840e+01, erreur max Tchebychev = 1.533338e-02
+
+2. Refroidissement
+T(2.5) = 66.347431 °C
+T(7.3) = 44.117060 °C
+Q rectangle   = 18328.870012
+Q trapèzes    = 18334.480061
+Q Simpson     = 18330.783789
+Q adaptative  = 18330.737100
+k optimal     = 0.151638
+Erreur max    = 4.849046
+Erreur moyenne= 1.677079
+
+3. Écoulement
+D rectangle   = 26.974760
+D trapèzes    = 26.978408
+D Simpson     = 26.976013
+D adaptative  = 26.975974
+Débit local x=3 = 5.533842
+Accélération x=3 = 0.860575
+Travail (m=2) = 9.000000
+
+4. Convergence intégration
+Erreur Simpson n=100 = 9.545920e-11
+Erreur adaptive      = 2.163130e-10
