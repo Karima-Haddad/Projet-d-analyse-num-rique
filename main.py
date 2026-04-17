@@ -193,6 +193,41 @@ def analyze_cooling(data: dict, visualizer: Visualizer) -> dict:
     t_fine = np.linspace(t_data.min(), t_data.max(), 500)
     T_interp = cooling.temperature(t_fine)
 
+    # COMPARAISON LAGRANGE vs NEWTON
+    interp = PolynomialInterpolation(t_data, T_data)
+
+    T_lagrange = interp.evaluate(t_fine, method="lagrange")
+    T_newton = interp.evaluate(t_fine, method="newton")
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(t_data, T_data, label="Données expérimentales", color="red", zorder=5)
+
+    plt.plot(t_fine, T_lagrange, label="Lagrange")
+    plt.plot(t_fine, T_newton, linestyle="--", label="Newton", linewidth=2)
+
+    plt.xlabel("Temps (s)")
+    plt.ylabel("Température (°C)")
+    plt.title("Comparaison Lagrange vs Newton")
+    plt.legend()
+    plt.grid(True)
+
+    save_current_figure("lagrange_vs_newton.png")
+
+    # TEMPÉRATURES À t = 2.5 s ET t = 7.3 s
+    t_eval_1 = 2.5
+    t_eval_2 = 7.3
+
+    T_25_lagrange = float(interp.evaluate(t_eval_1, method="lagrange"))
+    T_25_newton = float(interp.evaluate(t_eval_1, method="newton"))
+
+    T_73_lagrange = float(interp.evaluate(t_eval_2, method="lagrange"))
+    T_73_newton = float(interp.evaluate(t_eval_2, method="newton"))
+
+    print(f"T(2.5 s) par Lagrange = {T_25_lagrange:.4f} °C")
+    print(f"T(2.5 s) par Newton   = {T_25_newton:.4f} °C")
+    print(f"T(7.3 s) par Lagrange = {T_73_lagrange:.4f} °C")
+    print(f"T(7.3 s) par Newton   = {T_73_newton:.4f} °C")
+
     # Questions du sujet
     t_eval_1 = 2.5
     t_eval_2 = 7.3
