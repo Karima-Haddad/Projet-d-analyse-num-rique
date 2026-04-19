@@ -9,13 +9,11 @@ import matplotlib.pyplot as plt
 # =========================
 # IMPORTS DE TON PROJET
 # =========================
-# Adapte ces imports selon l'organisation réelle de ton projet.
 
 from src.interpolation.polynomial_interpolation import PolynomialInterpolation
 from src.integration.newton_cotes import NewtonCotes
 from src.integration.adaptive import AdaptiveIntegration
 
-# Bonus si tu les as
 try:
     from src.integration.gauss import GaussQuadrature
 except ImportError:
